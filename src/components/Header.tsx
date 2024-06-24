@@ -5,27 +5,28 @@ const HeaderContainer = styled("div")({
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
-    height: "120px",
+    height: "80px",
     width: "100%",
+    border: "1px solid white",
 });
 
 export const Header = () => {
     return (
         <HeaderContainer>
             <Link href={"/"}>
-                <h1>Header</h1>
+                <span>Header</span>
             </Link>
 
             <Link href={"/about"}>
-                <h1>About</h1>
+                <span>About</span>
             </Link>
 
             <Link href={"/services"}>
-                <h1>Services</h1>
+                <span>Services</span>
             </Link>
 
             <Link href={"/contact"}>
-                <h1>Contact</h1>
+                <span>Contact</span>
             </Link>
         </HeaderContainer>
     );

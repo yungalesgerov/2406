@@ -3,6 +3,7 @@ import { Footer } from "../components/Footer";
 import * as React from "react";
 import styled from "@emotion/styled";
 import { AppProps } from "next/app";
+
 const AppContent = styled("div")({
     width: "100%",
     height: "100%",

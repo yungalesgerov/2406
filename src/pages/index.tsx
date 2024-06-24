@@ -1,3 +1,4 @@
+import { StackingForm } from "@/components/stacking/StackingForm";
 import Head from "next/head";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
             <main>
                 <h1>Добро пожаловать в My Company</h1>
                 <p>Мы предлагаем лучшие стейкинг услуги на рынке.</p>
+                <StackingForm />
             </main>
         </div>
     );

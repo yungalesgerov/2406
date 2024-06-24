@@ -6,7 +6,12 @@
     ],
     "plugins": ["prettier"],
     "rules": {
-        // Можно настроить дополнительные правила ESLint здесь
-        "prettier/prettier": ["error", { "endOfLine": "auto" }]
+        "prettier/prettier": ["error", { "endOfLine": "auto" }],
+        "indent": ["error", "tab", { "SwitchCase": 1, "VariableDeclarator": "first" }],
+		"no-unused-vars": "warn", 
+		"no-console": "off", 
+		"semi": ["error", "always"], 
+		"quotes": ["error", "double"],
+		"react/react-in-jsx-scope": "off"
     }
 }
