@@ -18,13 +18,23 @@ export const ContactForm = () => {
         <FormContainer>
             <h1>Contact with us</h1>
             <label>
-                <TextField type="text" name="name" placeholder="Name" variant="outlined" />
+                <TextField
+					type="text"
+					name="name"
+					placeholder="Name"
+					variant="outlined"
+				/>
             </label>
             <label>
-                <TextField type="email" name="email" placeholder="Email" variant="outlined" />
+                <TextField
+					type="email"
+					name="email"
+					placeholder="Email"
+					variant="outlined"
+				/>
             </label>
             <label>
-                <TextareaAutosize name="message" placeholder="Message"  />
+                <TextareaAutosize name="message" placeholder="Message" />
             </label>
             <button type="submit">send</button>
         </FormContainer>

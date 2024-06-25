@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 const FormContainer = styled("div")({
     width: "30%",
@@ -18,21 +18,21 @@ const FormContainer = styled("div")({
 const Wrapper = styled("div")({
     width: "92%",
     height: "92%",
-    border: '1px solid red ',
+    border: "1px solid red ",
 });
-
 export const StackingForm = () => {
     return (
         <FormContainer>
             <Wrapper>
                 <div>
-                    <select><option value="jpool"></option>
-                    <option value="fable"></option>
-                    </select> 
+                    <select>
+                        <option value="jpool"></option>
+                        <option value="fable"></option>
+                    </select>
                     <button>connect wallet</button>
                 </div>
                 <input type="text" />
             </Wrapper>
         </FormContainer>
     );
-}
+};
