@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { TextField, TextareaAutosize } from "@mui/material";
+
 const FormContainer = styled("form")({
     display: "flex",
     flexDirection: "column",
@@ -19,19 +20,19 @@ export const ContactForm = () => {
             <h1>Contact with us</h1>
             <label>
                 <TextField
-					type="text"
-					name="name"
-					placeholder="Name"
-					variant="outlined"
-				/>
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    variant="outlined"
+                />
             </label>
             <label>
                 <TextField
-					type="email"
-					name="email"
-					placeholder="Email"
-					variant="outlined"
-				/>
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    variant="outlined"
+                />
             </label>
             <label>
                 <TextareaAutosize name="message" placeholder="Message" />
