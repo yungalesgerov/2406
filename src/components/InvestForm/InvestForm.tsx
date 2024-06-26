@@ -5,20 +5,20 @@ import {
     FormControl,
     InputLabel,
 } from "@mui/material";
-import { useState } from "react";
+import { useTranslation } from "react-i18next";
 const periods = {
     year: { max: 20, label: "Year" },
     month: { max: 12, label: "Month" },
     epoch: { max: 365, label: "Epoch" },
 };
 
-const InvestmentForm = () => {
-    const [selectedPeriod, setSelectedPeriod] = useState("year");
-    const [inputValue, setInputValue] = useState("");
-
+const InvestmentForm = (props) => {
+    const { t } = useTranslation();
+    const { selectedPeriod, setSelectedPeriod, inputValue, setInputValue } =
+        props;
     const handlePeriodChange = (event) => {
         setSelectedPeriod(event.target.value);
-        setInputValue(""); // Reset input value when period changes
+        setInputValue("");
     };
 
     const handleInputChange = (event) => {
@@ -42,7 +42,9 @@ const InvestmentForm = () => {
             }}
         >
             <FormControl fullWidth>
-                <InputLabel id="period-select-label">Select Period</InputLabel>
+                <InputLabel id="period-select-label">
+                    {t("Select Period")}
+                </InputLabel>
                 <Select
                     labelId="period-select-label"
                     id="period-select"
