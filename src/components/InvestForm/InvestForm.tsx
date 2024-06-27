@@ -4,72 +4,107 @@ import {
     TextField,
     FormControl,
     InputLabel,
+    SelectChangeEvent,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-const periods = {
+import React, { FC } from "react";
+import styled from "@emotion/styled";
+interface InvestmentFormProps {
+    selectedPeriod: string;
+    setSelectedPeriod: (period: string) => void;
+    inputValue: number | string;
+    setInputValue: (value: number) => void;
+    amountChange: (value: number) => void;
+    amount: number;
+}
+
+const periods: Record<string, { max: number; label: string }> = {
     year: { max: 20, label: "Year" },
     month: { max: 12, label: "Month" },
     epoch: { max: 365, label: "Epoch" },
 };
 
-const InvestmentForm = (props) => {
+const InvestFormContainer = styled("div")({
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+});
+const FlexRowDiv = styled("div")({
+    display: "flex",
+    alignItems: "center",
+    width: "100%",
+    gap: "10px",
+});
+const WhiteTextField = styled(TextField)({
+    backgroundColor: "white",
+});
+const InvestmentForm: FC<InvestmentFormProps> = ({
+    selectedPeriod,
+    setSelectedPeriod,
+    inputValue,
+    setInputValue,
+    amountChange,
+    amount,
+}) => {
     const { t } = useTranslation();
-    const { selectedPeriod, setSelectedPeriod, inputValue, setInputValue } =
-        props;
-    const handlePeriodChange = (event) => {
-        setSelectedPeriod(event.target.value);
-        setInputValue("");
+
+    const handlePeriodChange = (event: SelectChangeEvent<string>) => {
+        setSelectedPeriod(event.target.value as string);
+        setInputValue(0);
     };
 
-    const handleInputChange = (event) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         if (
-            value === "" ||
-            (value > 0 && value <= periods[selectedPeriod].max)
+            value === "0" ||
+            (parseFloat(value) > 0 &&
+                parseFloat(value) <= periods[selectedPeriod].max)
         ) {
-            setInputValue(value);
+            setInputValue(Number(value));
         }
     };
 
     return (
-        <div
-            style={{
-                padding: "20px",
-                backgroundColor: "#f5f5f5",
-                borderRadius: "8px",
-                maxWidth: "300px",
-                margin: "0 auto",
-            }}
-        >
-            <FormControl fullWidth>
-                <InputLabel id="period-select-label">
-                    {t("Select Period")}
-                </InputLabel>
-                <Select
-                    labelId="period-select-label"
-                    id="period-select"
-                    value={selectedPeriod}
-                    label="Select Period"
-                    onChange={handlePeriodChange}
-                >
-                    <MenuItem value="year">{periods.year.label}</MenuItem>
-                    <MenuItem value="month">{periods.month.label}</MenuItem>
-                    <MenuItem value="epoch">{periods.epoch.label}</MenuItem>
-                </Select>
-            </FormControl>
-            <TextField
+        <InvestFormContainer>
+            <WhiteTextField
                 fullWidth
-                type="number"
-                label={`Enter ${periods[selectedPeriod].label}`}
-                value={inputValue}
-                onChange={handleInputChange}
-                margin="normal"
-                inputProps={{
-                    min: 1,
-                    max: periods[selectedPeriod].max,
-                }}
+                label={t("Enter Amount")}
+                onChange={amountChange}
+                value={amount}
+                // type="number"
             />
-        </div>
+            <FlexRowDiv>
+                <WhiteTextField
+                    sx={{ marginTop: "8px" }}
+                    fullWidth
+                    type="number"
+                    label={`Enter ${periods[selectedPeriod].label}`}
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    margin="normal"
+                    inputProps={{
+                        min: 1,
+                        max: periods[selectedPeriod].max,
+                    }}
+                />
+                <FormControl sx={{ width: "33%", backgroundColor: "white" }}>
+                    <InputLabel id="period-select-label">
+                        {t("Select Period")}
+                    </InputLabel>
+                    <Select
+                        labelId="period-select-label"
+                        id="period-select"
+                        value={selectedPeriod}
+                        label="Select Period"
+                        onChange={handlePeriodChange}
+                    >
+                        <MenuItem value="year">{periods.year.label}</MenuItem>
+                        <MenuItem value="month">{periods.month.label}</MenuItem>
+                        <MenuItem value="epoch">{periods.epoch.label}</MenuItem>
+                    </Select>
+                </FormControl>
+            </FlexRowDiv>
+        </InvestFormContainer>
     );
 };
 

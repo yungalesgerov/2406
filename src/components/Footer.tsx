@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Link from "@mui/material/Link";
-
+import { FC } from "react";
 const FooterContainer = styled("div")({
     display: "flex",
     // justifyContent: "space-around",
@@ -19,7 +19,7 @@ const Wrapper = styled("div")({
     },
 });
 
-export const Footer = () => {
+export const Footer: FC = () => {
     return (
         <FooterContainer>
             <Wrapper>

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
-
+import React, { FC } from "react";
 const HeaderContainer = styled("div")({
     display: "flex",
     justifyContent: "space-around",
@@ -10,7 +10,7 @@ const HeaderContainer = styled("div")({
     border: "1px solid white",
 });
 
-export const Header = () => {
+export const Header: FC = () => {
     return (
         <HeaderContainer>
             <Link href={"/"}>

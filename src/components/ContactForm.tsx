@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { TextField, TextareaAutosize } from "@mui/material";
-
+import { FC } from "react";
 const FormContainer = styled("form")({
     display: "flex",
     flexDirection: "column",
@@ -14,7 +14,7 @@ const FormContainer = styled("form")({
     color: "white",
 });
 
-export const ContactForm = () => {
+export const ContactForm: FC = () => {
     return (
         <FormContainer>
             <h1>Contact with us</h1>

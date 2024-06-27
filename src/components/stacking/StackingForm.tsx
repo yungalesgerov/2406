@@ -1,20 +1,18 @@
-import styled from "@emotion/styled";
 import {
     Table,
-    TableBody,
     TableCell,
     TableContainer,
     TableHead,
     TableRow,
-    Paper,
     TextField,
 } from "@mui/material";
 import logo from "./solana24.svg";
 import calc from "./calc.svg";
 import graph from "./graph.svg";
-import { useState } from "react";
+import React, { FC, useState } from "react";
 import InvestmentForm from "../InvestForm/InvestForm";
 import Image from "next/image";
+import styled from "@emotion/styled";
 const FormContainer = styled("div")({
     width: "466px",
     height: "283px",
@@ -104,56 +102,116 @@ const Title = styled("h1")({
     width: "100%",
     minHeight: "20",
 });
-export const StackingForm = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [amount, setAmount] = useState(0);
-    const [interestPerDay, setInterestPerDay] = useState(0);
-    const [interestPerMonth, setInterestPerMonth] = useState(0);
-    const [interestPerYear, setInterestPerYear] = useState(0);
-    const [total, setTotal] = useState(0);
-    const [rate, setRate] = useState("6.91");
-    const [selectedPeriod, setSelectedPeriod] = useState("year");
-    const [inputValue, setInputValue] = useState(1);
-    const handleRoiClick = () => {
-        setIsModalOpen(true);
-    };
-    const handleCalculate = () => {
+
+export const StackingForm: FC = () => {
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [amount, setAmount] = useState<number>(0);
+    const [interestPerDay, setInterestPerDay] = useState<number>(0);
+    const [interestPerMonth, setInterestPerMonth] = useState<number>(0);
+    const [interestPerYear, setInterestPerYear] = useState<number>(0);
+    const [total, setTotal] = useState<number>(0);
+    const [rate, setRate] = useState<string>("6.91");
+    const [selectedPeriod, setSelectedPeriod] = useState<string>("month");
+    const [inputValue, setInputValue] = useState<number>(1);
+    // :TODO wrong interest in month and day
+    const handleCalculate = (): void => {
         const rateDecimal = parseFloat(rate) / 100;
         const period = selectedPeriod;
-        let dailyInterest, monthlyInterest, yearlyInterest;
+        let factor = 0;
+        let dailyInterest = 0,
+            monthlyInterest = 0,
+            yearlyInterest = 0;
+        let n = 0;
+        let value = 0;
+        let currentSavings = amount;
+        const yearlyContribution = 1;
+        const expectedReturn = rateDecimal;
+        const duration = inputValue;
 
         switch (period) {
             case "epoch":
-                dailyInterest = (amount * rateDecimal) / 365;
-                monthlyInterest = dailyInterest * 30;
-                yearlyInterest = dailyInterest * 365;
-                setTotal(amount * Math.pow(1 + rateDecimal / 365, inputValue));
+                value =
+                    amount *
+                    Math.pow(1 + rateDecimal / 365, duration * 365 * 0.00655);
+                setTotal(value);
                 break;
             case "month":
-                monthlyInterest = (amount * rateDecimal) / 12;
-                dailyInterest = monthlyInterest / 30;
-                yearlyInterest = monthlyInterest * 12;
-                setTotal(amount * Math.pow(1 + rateDecimal / 12, inputValue));
+                value = amount * Math.pow(1 + rateDecimal / 12, duration * 12);
+                setTotal(value);
                 break;
             case "year":
             default:
-                yearlyInterest = amount * rateDecimal;
-                dailyInterest = yearlyInterest / 365;
-                monthlyInterest = yearlyInterest / 12;
-                setTotal(amount * Math.pow(1 + rateDecimal, inputValue));
+                value = amount * Math.pow(1 + rateDecimal, duration);
+                setTotal(value);
                 break;
         }
 
-        setInterestPerDay(dailyInterest);
-        setInterestPerMonth(monthlyInterest);
-        setInterestPerYear(yearlyInterest);
-        setTotal(amount + yearlyInterest);
+        const yearlyData = [];
+
+        switch (period) {
+            case "day":
+                for (let i = 0; i < duration; i++) {
+                    dailyInterest = currentSavings * (expectedReturn / 365);
+                    currentSavings += dailyInterest + yearlyContribution / 365;
+                    yearlyData.push({
+                        day: i + 1,
+                        dailyInterest: dailyInterest,
+                        savingsEndOfDay: currentSavings,
+                        dailyContribution: yearlyContribution / 365,
+                    });
+                }
+                setInterestPerDay(dailyInterest);
+                setInterestPerMonth(currentSavings * (expectedReturn / 12));
+                setInterestPerYear(currentSavings * expectedReturn);
+                break;
+            case "month":
+                for (let i = 0; i < duration; i++) {
+                    monthlyInterest = currentSavings * (expectedReturn / 12);
+                    currentSavings += monthlyInterest + yearlyContribution / 12;
+                    yearlyData.push({
+                        month: i + 1,
+                        monthlyInterest: monthlyInterest,
+                        savingsEndOfMonth: currentSavings,
+                        monthlyContribution: yearlyContribution / 12,
+                    });
+                }
+                setInterestPerDay((currentSavings * expectedReturn) / 365);
+                setInterestPerMonth(monthlyInterest);
+                setInterestPerYear(currentSavings * expectedReturn);
+                break;
+            case "year":
+            default:
+                for (let i = 0; i < duration; i++) {
+                    yearlyInterest = currentSavings * expectedReturn;
+                    currentSavings += yearlyInterest + yearlyContribution;
+                    yearlyData.push({
+                        year: i + 1,
+                        yearlyInterest: yearlyInterest,
+                        savingsEndOfYear: currentSavings,
+                        yearlyContribution: yearlyContribution,
+                    });
+                }
+                setInterestPerDay((currentSavings * expectedReturn) / 365);
+                setInterestPerMonth((currentSavings * expectedReturn) / 12);
+                setInterestPerYear(yearlyInterest);
+                break;
+        }
     };
-    const closeModal = () => {
+    const formatNumber = (number: number) => {
+        return new Intl.NumberFormat("en-US", {
+            minimumFractionDigits: 3,
+            maximumFractionDigits: 3,
+        }).format(number);
+    };
+    const closeModal = (event: React.MouseEvent): void => {
+        event.preventDefault();
         setIsModalOpen(false);
     };
-    const amountChange = ({ target }: any) => {
-        const value = parseFloat(target.value);
+    const handleRoiClick = (): void => {
+        setIsModalOpen(true);
+    };
+    const amountChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        const value = parseFloat(event.target.value);
         if (value >= 1) {
             setAmount(value);
         } else {
@@ -291,7 +349,11 @@ export const StackingForm = () => {
             </Wrapper>
             {isModalOpen && (
                 <ModalBackground onClick={closeModal}>
-                    <ModalContainer onClick={(e) => e.stopPropagation()}>
+                    <ModalContainer
+                        onClick={(e) => {
+                            e.stopPropagation();
+                        }}
+                    >
                         <FlexRowDiv style={{ backgroundColor: "#374850" }}>
                             <Title>Solana APY Interest Calculator</Title>
                             <ValidatorButton onClick={closeModal}>
@@ -301,21 +363,22 @@ export const StackingForm = () => {
                         <div>
                             current APY Interest Rate<Title>≈{rate}%</Title>
                             <div>
-                                <input
-                                    onChange={amountChange}
-                                    value={amount}
-                                    type="number"
+                                <InvestmentForm
+                                    amountChange={amountChange}
+                                    amount={amount}
+                                    selectedPeriod={selectedPeriod}
+                                    setSelectedPeriod={setSelectedPeriod}
+                                    inputValue={inputValue}
+                                    setInputValue={setInputValue}
                                 />
-                                <div>
-                                    <InvestmentForm
-                                        selectedPeriod={selectedPeriod}
-                                        setSelectedPeriod={setSelectedPeriod}
-                                        inputValue={inputValue}
-                                        setInputValue={setInputValue}
-                                    />
-                                </div>
                             </div>
-                            <button onClick={handleCalculate}>calculate</button>
+                            <ValidatorButton
+                                style={{ width: "100%", marginTop: "8px" }}
+                                color="#FFCD29"
+                                onClick={handleCalculate}
+                            >
+                                calculate
+                            </ValidatorButton>
                             <TableContainer>
                                 <Table>
                                     <TableHead>
@@ -326,9 +389,11 @@ export const StackingForm = () => {
                                             >
                                                 Total return, SOL
                                             </TableCell>
-                                            <TableCell>{total}</TableCell>
                                             <TableCell>
-                                                ${total * 137}
+                                                {formatNumber(total)}
+                                            </TableCell>
+                                            <TableCell>
+                                                ${formatNumber(total * 137)}
                                             </TableCell>
                                         </TableRow>
                                         <TableRow>
@@ -336,10 +401,13 @@ export const StackingForm = () => {
                                                 Interest per Day
                                             </TableCell>
                                             <TableCell>
-                                                {interestPerDay}
+                                                {formatNumber(interestPerDay)}
                                             </TableCell>
                                             <TableCell>
-                                                ${interestPerDay * 137}
+                                                $
+                                                {formatNumber(
+                                                    interestPerDay * 137,
+                                                )}
                                             </TableCell>
                                         </TableRow>
                                         <TableRow>
@@ -347,10 +415,13 @@ export const StackingForm = () => {
                                                 Interest per Month
                                             </TableCell>
                                             <TableCell>
-                                                {interestPerMonth}
+                                                {formatNumber(interestPerMonth)}
                                             </TableCell>
                                             <TableCell>
-                                                ${interestPerMonth * 137}
+                                                $
+                                                {formatNumber(
+                                                    interestPerMonth * 137,
+                                                )}
                                             </TableCell>
                                         </TableRow>
                                         <TableRow>
@@ -358,10 +429,13 @@ export const StackingForm = () => {
                                                 Interest per Year
                                             </TableCell>
                                             <TableCell>
-                                                {interestPerYear}
+                                                {formatNumber(interestPerYear)}
                                             </TableCell>
                                             <TableCell>
-                                                ${interestPerYear * 137}
+                                                $
+                                                {formatNumber(
+                                                    interestPerYear * 137,
+                                                )}
                                             </TableCell>
                                         </TableRow>
                                     </TableHead>
