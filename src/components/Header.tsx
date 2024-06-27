@@ -1,33 +1,45 @@
 import styled from "@emotion/styled";
-import Link from "next/link";
+// import Link from "next/link";
 
 const HeaderContainer = styled("div")({
     display: "flex",
+    marginLeft: "20%",
     justifyContent: "space-around",
     alignItems: "center",
-    height: "80px",
-    width: "100%",
-    border: "1px solid white",
+    minHeight: "10vh",
+    width: "30%",
+});
+
+const HeaderLink = styled("a")({
+    textDecoration: "none",
+    color: "white",
+    font: "small-caps 20px/1 sans-serif",
+    marginRight: "10%",
+    transition: "1s",
+
+    "&: hover": {
+        color: "red",
+    },
 });
 
 export const Header = () => {
     return (
         <HeaderContainer>
-            <Link href={"/"}>
-                <span>Header</span>
-            </Link>
+            <HeaderLink href={"/"}>
+                <span>Главная</span>
+            </HeaderLink>
 
-            <Link href={"/about"}>
-                <span>About</span>
-            </Link>
+            <HeaderLink href={"/about"}>
+                <span>О нас</span>
+            </HeaderLink>
 
-            <Link href={"/services"}>
-                <span>Services</span>
-            </Link>
+            <HeaderLink href={"/services"}>
+                <span>Услуги</span>
+            </HeaderLink>
 
-            <Link href={"/contact"}>
-                <span>Contact</span>
-            </Link>
+            <HeaderLink href={"/contact"}>
+                <span>Обратная связь</span>
+            </HeaderLink>
         </HeaderContainer>
     );
 };

@@ -3,18 +3,9 @@ import { Footer } from "../components/Footer";
 import * as React from "react";
 import styled from "@emotion/styled";
 import { AppProps } from "next/app";
+import "./index.css";
 
-const AppContent = styled("div")({
-    width: "100%",
-    height: "100%",
-    margin: "0",
-    padding: "0",
-    color: "white",
-    backgroundImage: "url(/bg.jpg)",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-});
+const AppContent = styled("div")({});
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (

@@ -1,6 +1,10 @@
 import Head from "next/head";
 import { ContactForm } from "../components/ContactForm";
+import { styled } from "@mui/material";
 
+const Main = styled("div")({
+    minHeight: "80vh",
+});
 export default function Contact() {
     return (
         <div>
@@ -8,10 +12,10 @@ export default function Contact() {
                 <title>Контакты - My Company</title>
                 <meta name="description" content="Форма для обратной связи" />
             </Head>
-            <main>
+            <Main>
                 <h1>Контакты</h1>
                 <ContactForm />
-            </main>
+            </Main>
         </div>
     );
 }
