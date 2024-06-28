@@ -1,43 +1,78 @@
 import styled from "@emotion/styled";
-import { TextField, TextareaAutosize } from "@mui/material";
+import { TextField, TextareaAutosize, Button } from "@mui/material";
 import { FC } from "react";
 const FormContainer = styled("form")({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
-    height: "100%",
-    gap: "10px",
-    margin: "0",
-    padding: "0",
+    width: "60vw",
+    minHeight: "40vh",
+    gap: "24px",
+    margin: "0 auto",
     color: "white",
+    border: "1px solid white",
+    borderRadius: "28px",
+    padding: "20px 0",
 });
+const Label = styled("label")({
+    width: "80%",
+    color: "white",
+    // border: "1px solid white",
+});
+const ContactButton = styled(Button)({
+    color: "white",
+    width: "80%",
+    borderRadius: "28px",
+    border: "1px solid white",
+});
+const TextArea = styled(TextareaAutosize)({
+    width: "92.6%",
+    minHeight: "40px",
+    backgroundColor: "inherit",
+    color: "white",
+    margin: "0",
+    padding: "20px",
+    border: "1px solid white",
+});
+const StyledTextField = styled(TextField)(({ theme }) => ({
+    "& .MuiFilledInput-root": {
+        color: "#ffffff",
+        border: "1px solid #ffffff",
+        "&::placeholder": {
+            color: "#ffffff",
+        },
+    },
+    "& .MuiInputLabel-root": {
+        color: "#ffffff",
+    },
+}));
 
 export const ContactForm: FC = () => {
     return (
         <FormContainer>
-            <h1>Contact with us</h1>
-            <label>
-                <TextField
+            <Label>
+                <StyledTextField
+                    fullWidth
                     type="text"
-                    name="name"
+                    label="Name"
                     placeholder="Name"
-                    variant="outlined"
+                    variant="filled"
                 />
-            </label>
-            <label>
-                <TextField
+            </Label>
+            <Label>
+                <StyledTextField
+                    fullWidth
+                    label="Email"
                     type="email"
-                    name="email"
                     placeholder="Email"
-                    variant="outlined"
+                    variant="filled"
                 />
-            </label>
-            <label>
-                <TextareaAutosize name="message" placeholder="Message" />
-            </label>
-            <button type="submit">send</button>
+            </Label>
+            <Label>
+                <TextArea placeholder="Message" />
+            </Label>
+            <ContactButton type="submit">send</ContactButton>
         </FormContainer>
     );
 };

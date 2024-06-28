@@ -1,5 +1,9 @@
 import Head from "next/head";
+import { styled } from "@mui/material";
 
+const Main = styled("div")({
+    minHeight: "80vh",
+});
 export default function Services() {
     return (
         <div>
@@ -10,7 +14,7 @@ export default function Services() {
                     content="Детальное описание предлагаемых стейкинг услуг"
                 />
             </Head>
-            <main>
+            <Main>
                 <h1>Услуги</h1>
                 <p>
                     Мы предлагаем различные стейкинг услуги для удовлетворения
@@ -21,7 +25,7 @@ export default function Services() {
                     <li>Услуга 2: Описание услуги 2</li>
                     <li>Услуга 3: Описание услуги 3</li>
                 </ul>
-            </main>
+            </Main>
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import Head from "next/head";
-
+import AboutPage from "@/components/About";
 export default function About() {
     return (
         <div>
@@ -10,17 +10,7 @@ export default function About() {
                     content="Информация о команде и миссии компании"
                 />
             </Head>
-            <main>
-                <h1>О нас</h1>
-                <p>
-                    Наша команда состоит из опытных профессионалов, готовых
-                    помочь вам.
-                </p>
-                <p>
-                    Наша миссия - предоставить высококачественные стейкинг
-                    услуги.
-                </p>
-            </main>
+            <AboutPage />
         </div>
     );
 }

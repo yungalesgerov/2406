@@ -1,16 +1,18 @@
 import styled from "@emotion/styled";
-import Link from "@mui/material/Link";
-import { FC } from "react";
+import vk from "./icon/vk.png";
+import dis from "./icon/dis.png";
+import tl from "./icon/tl.png";
+import Image from "next/image";
+
 const FooterContainer = styled("div")({
     display: "flex",
-    // justifyContent: "space-around",
+    justifyContent: "space-around",
     alignItems: "center",
-    height: "80px",
+    minHeight: "10vh",
     width: "100%",
-    border: "1px solid white",
 });
 const Wrapper = styled("div")({
-    width: "50%",
+    width: "20%",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -19,21 +21,57 @@ const Wrapper = styled("div")({
     },
 });
 
-export const Footer: FC = () => {
+const FooterLink = styled("a")({
+    textDecoration: "none",
+    color: "white",
+    font: "small-caps 20px/1 sans-serif",
+    marginRight: "10%",
+    filter: "grayscale(1)",
+    transition: "1s",
+    "&: hover": {
+        filter: "grayscale(0)",
+    },
+});
+const FooterInfo = styled("a")({
+    textDecoration: "none",
+    color: "white",
+    font: "small-caps 20px/1 sans-serif",
+    transition: "0.5s",
+    "&: hover": {
+        color: "red",
+    },
+});
+
+export const Footer = () => {
     return (
         <FooterContainer>
+            <FooterInfo href={"/about"}>
+                <span>Узнать больше о OurCompany</span>
+            </FooterInfo>
             <Wrapper>
-                <Link href={"/about"}>
-                    <span>vk</span>
-                </Link>
+                <FooterLink href={"/about"}>
+                    <Image
+                        style={{ width: "60%", height: "60%" }}
+                        src={vk}
+                        alt="vk"
+                    ></Image>
+                </FooterLink>
 
-                <Link href={"/services"}>
-                    <span>dis</span>
-                </Link>
+                <FooterLink href={"/services"}>
+                    <Image
+                        style={{ width: "60%", height: "60%" }}
+                        src={dis}
+                        alt="dis"
+                    ></Image>
+                </FooterLink>
 
-                <Link href={"/contact"}>
-                    <span>tg</span>
-                </Link>
+                <FooterLink href={"/contact"}>
+                    <Image
+                        style={{ width: "60%", height: "60%" }}
+                        src={tl}
+                        alt="tg"
+                    ></Image>
+                </FooterLink>
             </Wrapper>
         </FooterContainer>
     );

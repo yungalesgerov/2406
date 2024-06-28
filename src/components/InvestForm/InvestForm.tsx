@@ -6,7 +6,6 @@ import {
     InputLabel,
     SelectChangeEvent,
 } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import React, { FC } from "react";
 import styled from "@emotion/styled";
 interface InvestmentFormProps {
@@ -46,8 +45,6 @@ const InvestmentForm: FC<InvestmentFormProps> = ({
     amountChange,
     amount,
 }) => {
-    const { t } = useTranslation();
-
     const handlePeriodChange = (event: SelectChangeEvent<string>) => {
         setSelectedPeriod(event.target.value as string);
         setInputValue(0);
@@ -68,7 +65,7 @@ const InvestmentForm: FC<InvestmentFormProps> = ({
         <InvestFormContainer>
             <WhiteTextField
                 fullWidth
-                label={t("Enter Amount")}
+                label="Enter Amount"
                 onChange={amountChange}
                 value={amount}
                 // type="number"
@@ -89,7 +86,7 @@ const InvestmentForm: FC<InvestmentFormProps> = ({
                 />
                 <FormControl sx={{ width: "33%", backgroundColor: "white" }}>
                     <InputLabel id="period-select-label">
-                        {t("Select Period")}
+                        Select Period
                     </InputLabel>
                     <Select
                         labelId="period-select-label"
