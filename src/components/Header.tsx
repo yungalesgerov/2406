@@ -16,7 +16,7 @@ const HeaderLink = styled("a")({
     font: "small-caps 20px/1 sans-serif",
     marginRight: "10%",
     transition: "1s",
-
+    minWidth: "80px",
     "&: hover": {
         color: "red",
     },
