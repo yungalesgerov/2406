@@ -1,8 +1,8 @@
-import { i18n } from "./next-i18next.config.js"; // Ensure the correct file extension
+import createNextIntlPlugin from "next-intl/plugin";
 
-const nextConfig = {
-    i18n,
-    // Other Next.js configurations
-};
+const withNextIntl = createNextIntlPlugin();
 
-export default nextConfig;
+/** @type {import('next').NextConfig} */
+const nextConfig = {};
+
+export default withNextIntl(nextConfig);

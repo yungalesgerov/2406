@@ -1,5 +1,5 @@
 export const i18n = {
     defaultLocale: "en",
     locales: ["en", "ru"],
-    localeDetection: true, // Boolean value, not a string
+    localeDetection: false, // Boolean value, not a string
 };
