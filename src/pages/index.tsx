@@ -8,8 +8,8 @@ import { useMediaQuery, useTheme } from "@mui/material";
 const Main = styled("div")<any>(({ isMobile }) => ({
     width: "100%",
     minHeight: "80vh",
-    backgroundColor: "rgb(37, 37, 37)",
-    boxShadow: "0px 30px 35px 80px rgba(37, 37, 37, 1)",
+    // backgroundColor: "rgb(37, 37, 37)",
+    // boxShadow: "0px 30px 35px 80px rgba(37, 37, 37, 1)",
     display: "flex",
     alignItems: "center",
     flexDirection: isMobile ? "column" : "row",
@@ -24,15 +24,15 @@ const ZagMain = styled("div")<any>({
 const PodZagMain = styled("div")({
     display: "border-box",
     font: "small-caps 25px/1 sans-serif",
-    marginTop: "3%",
     maxWidth: "700px",
     minWidth: "500px",
     padding: "20px",
+    paddingTop: "40px",
     textAlign: "justify",
     textIndent: "20px",
-    backgroundColor: "rgb(25, 25, 25)",
+    backgroundColor: "rgb(37, 37, 37)",
     borderRadius: "40px",
-    boxShadow: "15px 10px 20px 1px rgba(255, 255, 255, 1)",
+    boxShadow: "5px 5px 10px 1px rgba(0, 0, 0, 1)",
     margin: "auto",
 });
 const MainText = styled("div")({
@@ -40,7 +40,7 @@ const MainText = styled("div")({
     marginTop: "2%",
     textIndent: "20px",
     textAlign: "justify",
-    marginLeft: "10%",
+    marginLeft: "2.5%",
     marginRight: "15%",
     marginBottom: "5%",
 });

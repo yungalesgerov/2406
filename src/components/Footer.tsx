@@ -10,6 +10,8 @@ const FooterContainer = styled("div")({
     alignItems: "center",
     minHeight: "10vh",
     width: "100%",
+    backgroundColor: "rgb(37, 37, 37)",
+    boxShadow: "0px 0px 35px 30px rgba(37, 37, 37, 1)",
 });
 const Wrapper = styled("div")({
     width: "20%",

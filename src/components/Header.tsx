@@ -3,18 +3,18 @@ import styled from "@emotion/styled";
 
 const HeaderContainer = styled("div")({
     display: "flex",
-    marginLeft: "20%",
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
     alignItems: "center",
     minHeight: "10vh",
-    width: "30%",
+    width: "100%",
+    backgroundColor: "rgb(37, 37, 37)",
+    boxShadow: "0px 30px 35px 30px rgba(37, 37, 37, 1)",
 });
 
 const HeaderLink = styled("a")({
     textDecoration: "none",
     color: "white",
     font: "small-caps 20px/1 sans-serif",
-    marginRight: "10%",
     transition: "1s",
     minWidth: "80px",
     "&: hover": {

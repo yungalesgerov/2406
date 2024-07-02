@@ -28,6 +28,7 @@ const FormContainer = styled("div")({
     backgroundColor: "rgb(55, 72, 80)",
     borderRadius: "12px",
     margin: "0 auto",
+    boxShadow: "5px 5px 10px 1px rgba(0, 0, 0, 1)",
 });
 
 const Wrapper = styled("div")({

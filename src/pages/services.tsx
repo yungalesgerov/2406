@@ -3,38 +3,44 @@ import { styled } from "@mui/material";
 
 const Main = styled("div")({
     minHeight: "80vh",
-    backgroundColor: "rgb(37, 37, 37)",
-    boxShadow: "0px 30px 35px 80px rgba(37, 37, 37, 1)",
+    // backgroundColor: "rgb(37, 37, 37)",
+    // boxShadow: "0px 30px 35px 80px rgba(37, 37, 37, 1)",
 });
 
-const ZagMain = styled("div")({
-    font: "small-caps 50px/1 sans-serif",
-    marginLeft: "15%",
-    marginTop: "3%",
-    marginBottom: "10%",
+const ZagMain = styled("div")<any>({
+    font: "small-caps 30px/1 sans-serif",
+    margin: "auto",
+    marginTop: "5%",
+    textAlign: "center",
+    backgroundColor: "rgb(37, 37, 37)",
+    paddingTop: "20px",
+    paddingBottom: "20px",
+    display: "border-box",
+    maxWidth: "700px",
+    minWidth: "500px",
+    padding: "20px",
+    textIndent: "20px",
+    borderRadius: "40px",
+    boxShadow: "5px 5px 10px 1px rgba(0, 0, 0, 1)",
+    marginBottom: "2%",
+    minHeight: "150px",
 });
 const PodZagMain = styled("div")({
-    font: "small-caps 35px/1 sans-serif",
-    marginTop: "3%",
-    marginLeft: "5%",
-    maxWidth: "700px",
-    paddingTop: "10px",
-    paddingBottom: "10px",
+    display: "border-box",
+    font: "small-caps 25px/1 sans-serif",
     textAlign: "justify",
-    marginRight: "10%",
     textIndent: "20px",
-    backgroundColor: "rgb(25, 25, 25)",
-    borderRadius: "40px",
-    boxShadow: "15px 10px 20px 1px rgba(231, 0, 0, 1)",
+    margin: "auto",
+    marginBottom: "1%",
+    marginTop: "1%",
 });
 const MainText = styled("div")({
-    font: "small-caps 25px/1 sans-serif",
+    font: "small-caps 20px/1 sans-serif",
     marginTop: "2%",
     textIndent: "20px",
     textAlign: "justify",
     marginLeft: "10%",
     marginRight: "15%",
-    marginBottom: "10%",
 });
 export default function Services() {
     return (
@@ -48,9 +54,8 @@ export default function Services() {
             </Head>
             <Main>
                 <ZagMain>
-                    Наши Услуги
+                    1.Стейкинг SOL
                     <PodZagMain>
-                        1.Стейкинг SOL
                         <MainText>
                             Мы предлагаем услуги стейкинга криптовалюты Solana
                             (SOL), которые позволяют вам получать пассивный
@@ -59,8 +64,10 @@ export default function Services() {
                             рисках.
                         </MainText>
                     </PodZagMain>
+                </ZagMain>
+                <ZagMain>
+                    2.Управление Портфелем
                     <PodZagMain>
-                        2.Управление Портфелем
                         <MainText>
                             Наши эксперты помогут вам разработать и управлять
                             портфелем криптовалют, чтобы обеспечить максимальную
@@ -68,8 +75,10 @@ export default function Services() {
                             стратегии, учитывающие ваши цели и уровень риска.
                         </MainText>
                     </PodZagMain>
+                </ZagMain>
+                <ZagMain>
+                    3.Аналитика и Отчеты
                     <PodZagMain>
-                        3.Аналитика и Отчеты
                         <MainText>
                             Мы предоставляем подробные аналитические отчеты по
                             вашему стейкингу и другим криптовалютным активам.
@@ -78,8 +87,10 @@ export default function Services() {
                             инвестиций.
                         </MainText>
                     </PodZagMain>
+                </ZagMain>
+                <ZagMain>
+                    4.Обучение и Консультации
                     <PodZagMain>
-                        4.Обучение и Консультации
                         <MainText>
                             Мы предлагаем обучающие программы и консультации,
                             которые помогут вам лучше понять процессы стейкинга
@@ -88,8 +99,10 @@ export default function Services() {
                             знаниями.
                         </MainText>
                     </PodZagMain>
+                </ZagMain>
+                <ZagMain>
+                    5.Техническая Поддержка
                     <PodZagMain>
-                        5.Техническая Поддержка
                         <MainText>
                             Наша команда техподдержки готова оказать помощь по
                             любым вопросам, связанным с вашим стейкингом и
@@ -98,8 +111,10 @@ export default function Services() {
                             любых проблем.
                         </MainText>
                     </PodZagMain>
+                </ZagMain>
+                <ZagMain>
+                    6.Безопасность Активов
                     <PodZagMain>
-                        6.Безопасность Активов
                         <MainText>
                             Мы используем передовые технологии и лучшие практики
                             для обеспечения безопасности ваших криптовалютных

@@ -3,32 +3,36 @@ import { styled } from "@mui/material";
 
 const Main = styled("div")({
     minHeight: "80vh",
-    backgroundColor: "rgb(37, 37, 37)",
-    boxShadow: "0px 30px 35px 80px rgba(37, 37, 37, 1)",
+    // backgroundColor: "rgb(37, 37, 37)",
+    // boxShadow: "0px 30px 35px 80px rgba(37, 37, 37, 1)",
 });
 
 const ZagMain = styled("div")<any>({
-    minWidth: "500px",
     font: "small-caps 30px/1 sans-serif",
     margin: "auto",
-    marginBottom: "10%",
-    marginTop: "3%",
+    marginTop: "5%",
+    textAlign: "center",
+    backgroundColor: "rgb(37, 37, 37)",
+    paddingTop: "20px",
+    paddingBottom: "20px",
+    display: "border-box",
+    maxWidth: "700px",
+    minWidth: "500px",
+    padding: "20px",
+    textIndent: "20px",
+    borderRadius: "40px",
+    boxShadow: "5px 5px 10px 1px rgba(0, 0, 0, 1)",
+    marginBottom: "2%",
+    minHeight: "150px",
 });
 const PodZagMain = styled("div")({
     display: "border-box",
     font: "small-caps 25px/1 sans-serif",
-    marginTop: "3%",
-    maxWidth: "700px",
-    minWidth: "500px",
-    padding: "20px",
     textAlign: "justify",
     textIndent: "20px",
-    backgroundColor: "rgb(25, 25, 25)",
-    borderRadius: "40px",
-    boxShadow: "15px 10px 20px 1px rgba(255, 255, 255, 1)",
     margin: "auto",
     marginBottom: "1%",
-    minHeight: "100px",
+    marginTop: "1%",
 });
 const MainText = styled("div")({
     font: "small-caps 20px/1 sans-serif",
@@ -53,7 +57,6 @@ export default function About() {
                 <ZagMain>
                     О нас
                     <PodZagMain>
-                        Добро пожаловать в My Company!
                         <MainText>
                             Мы являемся ведущими специалистами в области
                             стейкинга криптовалюты Solana (SOL). Наша цель —
